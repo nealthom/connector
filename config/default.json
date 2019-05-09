@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb://nealthom:fabdorseg@cluster0-shard-00-00-nvekj.mongodb.net:27017,cluster0-shard-00-01-nvekj.mongodb.net:27017,cluster0-shard-00-02-nvekj.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true",
+  "jwtSecret": "allIwannadoisAZoomZoom",
+  "githubClientId": "2bf3825660d803621d6e",
+  "githubSecret": "b5c0628406e003e921e1c4f7f6e5e4e33415fb8e"
+}
