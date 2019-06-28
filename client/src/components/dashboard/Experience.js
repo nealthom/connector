@@ -33,10 +33,16 @@ const Experience = ({ experience, deleteExperience }) => {
       <h2 className="my-2">Experience Credentials</h2>
       <table className="table">
         <thead>
-          <th>Company</th>
-          <th className="hide-sm">Title</th>
-          <th className="hide-sm">Years</th>
-          <th />
+          <tr>
+            <th>Company</th>
+          </tr>
+          <tr className="hide-sm">
+            <th>Title</th>
+          </tr>
+          <tr className="hide-sm">
+            <th>Years</th>
+          </tr>
+          <tr />
         </thead>
         <tbody>{experiences}</tbody>
       </table>
