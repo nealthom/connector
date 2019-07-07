@@ -8,7 +8,7 @@ const ProfileAbout = ({
     user: { name }
   }
 }) => (
-  <div class="profile-about bg-light p-2">
+  <div className="profile-about bg-light p-2">
     {bio && (
       <Fragment>
         <h2 className="text-primary">My Bio</h2>
