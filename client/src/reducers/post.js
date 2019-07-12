@@ -67,12 +67,13 @@ export default function(state = initialState, action) {
       };
 
     case REMOVE_COMMENT:
+      console.log(`this is the post ${state.post}`);
       return {
         ...state,
         post: {
           ...state.post,
           comments: state.post.comments.filter(
-            comment => comment._id !== payload
+            comment => comment._id != payload
           )
         },
         loading: false
