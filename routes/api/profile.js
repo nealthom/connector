@@ -168,7 +168,7 @@ router.delete("/", auth, async (req, res) => {
 });
 
 // @route   POST api/profile/note/:id
-// @desc    Comment on a post
+// @desc    Create a note
 // @access  Private
 router.post(
   "/note/:id",
@@ -207,24 +207,15 @@ router.post(
   }
 );
 
-// @route    PUT api/profile/education
-// @desc     Add profile education
-// @access   Private
+// @route   Put api/profile/note/:id
+// @desc    Update a note
+// @access  Private
 router.put(
-  "/education",
+  "/note/:id/:note_id",
   [
     auth,
     [
-      check("school", "School is required")
-        .not()
-        .isEmpty(),
-      check("degree", "Degree is required")
-        .not()
-        .isEmpty(),
-      check("fieldofstudy", "Field of study is required")
-        .not()
-        .isEmpty(),
-      check("from", "From date is required")
+      check("text", "Text is required")
         .not()
         .isEmpty()
     ]
@@ -235,37 +226,35 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const {
-      school,
-      degree,
-      fieldofstudy,
-      from,
-      to,
-      current,
-      description
-    } = req.body;
-
-    const newEdu = {
-      school,
-      degree,
-      fieldofstudy,
-      from,
-      to,
-      current,
-      description
-    };
-
     try {
-      const profile = await Profile.findOne({ user: req.user.id });
+      const user = await User.findById(req.user.id).select("-password");
+      const profile = await Profile.findById(req.params.id);
 
-      profile.education.unshift(newEdu);
+      const noteIndex = profile.notes
+        .map(note => note.id)
+        .indexOf(req.params.note_id);
 
+      const newNote = {
+        ...profile.notes[noteIndex],
+        text: req.body.text
+      };
+
+      profile.notes[noteIndex] = newNote;
+
+      // const newNote = {
+      //   text: req.body.text,
+      //   name: user.name,
+      //   avatar: user.avatar,
+      //   user: req.user.id
+      // };
+
+      // profile.notes.unshift(newNote);
       await profile.save();
 
-      res.json(profile);
+      res.json(profile.notes);
     } catch (err) {
       console.error(err.message);
-      res.status(500).send("Server Error");
+      res.status(500).send("Server error");
     }
   }
 );
