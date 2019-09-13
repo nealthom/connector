@@ -10,8 +10,8 @@ const DashboardActions = ({ _id }) => {
       <Link to="/edit-profile" className="btn">
         <i className="fas fa-user-edit text-primary" /> Edit Profile
       </Link>
-      <Link to="/add-education" className="btn">
-        <i className="fas fa-sticky-note text-primary" /> Send a note
+      <Link to="/posts" className="btn">
+        <i className="fas fa-sticky-note text-primary" /> New Post
       </Link>
     </div>
   );
